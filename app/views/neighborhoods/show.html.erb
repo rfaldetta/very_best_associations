@@ -16,11 +16,39 @@
 
         <ul class="list-group">
 
-        <% @venues.each do |venue| %>
+        <% @neighborhood.venues.each do |venues| %>
           <li class="list-group-item">
-            <%= venue.name %>
+            <%= venues.name %>
           </li>
           <% end %>
+          <li class="list-group-item">
+            <form action="/create_venue" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <!-- Hidden input for neighborhood_id -->
+              <input name="neighborhood_id" type="hidden" value="<%= @neighborhood.id %>">
+
+              <!-- Label and input for name -->
+              <div class="form-group">
+                <label for="name" class="control-label">
+                  Name
+                </label>
+                <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @venue.name %>">
+              </div>
+
+              <!-- Label and input for address -->
+              <div class="form-group">
+                <label for="address" class="control-label">
+                  Address
+                </label>
+                <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @venue.address %>">
+              </div>
+
+              <button class="btn btn-success">
+                Create Venue
+              </button>
+            </li>
         </ul>
       </dd>
     </dl>
