@@ -49,6 +49,11 @@
                 Create Venue
               </button>
             </li>
+            <% @neighborhood.favorites.each do |favorites| %>
+          <li class="list-group-item">
+            <%= favorites.dish.name %> at <%= favorites.venue.name %> by <%= favorites.user.username %>
+          </li>
+          <% end %>
         </ul>
       </dd>
     </dl>
